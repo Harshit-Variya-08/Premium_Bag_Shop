@@ -23,6 +23,6 @@ app.use("/product", productRouter);
 
 
 app.get("/", (req, resp) => {
-  resp.send("HOme page");
+  resp.render("index");
 });
 app.listen(3200);

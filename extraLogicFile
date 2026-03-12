@@ -16,3 +16,9 @@ picture - in db
     bgColor
     panelColor
     textColor
+// -> Sign up or Login
+    /shop = shop
+    /user/cart = cart of user
+    /admin  = admin panel
+    /owner/products = show all products that owner can handle and show.
+    /owner/admin = show admin panel to create products
