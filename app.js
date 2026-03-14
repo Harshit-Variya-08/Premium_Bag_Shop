@@ -16,7 +16,7 @@ app.use(session({
 }));
 app.use(flash());
 app.set("view engine", "ejs");
-
+  
 // Connection with Mongodb , in it dotenv also initiailzed first 
 import db from "./config/mongoose-connection.js";
 
@@ -26,7 +26,7 @@ import ownerRouter from "./routes/ownerRouter.js";
 import productRouter from "./routes/productRouter.js";
 import indexRouter from './routes/index.js';
 app.use("/users", userRouter);
-app.use("/owner", ownerRouter);
+app.use("/owners", ownerRouter);
 app.use("/product", productRouter);
 app.use("/",indexRouter);
 

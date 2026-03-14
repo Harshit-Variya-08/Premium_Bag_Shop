@@ -1,17 +1,26 @@
 import express from 'express';
 import isLoggedIn from '../middlewares/isLoggedIn.js';
+import upload from '../config/multer-config.js';
+import productModel from '../models/productModel.js';
 const router = express.Router();
 
+
 //Every route have common url "product" in starting after given in this will apply 
-
-router.get("/",isLoggedIn,(req,resp)=>    // here route will be =  /product/
+router.post("/create",upload.single("image"),async (req,resp)=>
 {
-    resp.send("Product  Routes ");
-})
+    let {name , price , discount , bgColor , panelColor, textColor}=req.body;
+    let product = await productModel.create({
+        
+        image:req.file.buffer,
+        name,
+        price,
+        discount,
+        bgColor,
+        panelColor,
+        textColor
 
-router.get("/:id",(req,resp)=> // here route will be = /product/:id 
-{
-    resp.send("Product Route with ID ")
+    })
+    req.flash("success","Product Created successfully.");
+    resp.redirect("/owners/admin");
 })
-
 export default router;

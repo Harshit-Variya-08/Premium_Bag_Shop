@@ -27,4 +27,10 @@ if(process.env.NODE_ENV == "development")
 
     }
 
+router.get("/admin",(req,resp)=>
+{
+    let success = req.flash("success");
+    resp.render("createproducts",{success});
+})
+
 export default router;
