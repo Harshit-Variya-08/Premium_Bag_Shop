@@ -59,3 +59,13 @@ export let loginUser = async(req,resp)=>
 
         })
     }
+
+    //======================================================
+    export let logout = (req,resp)=>
+        {
+            resp.clearCookie("loginToken");
+            resp.clearCookie("registerToken");
+            req.flash("error","Log out Completeed")
+            resp.redirect("/");
+            // resp.send("logout completed");
+        }

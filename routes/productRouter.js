@@ -1,9 +1,10 @@
 import express from 'express';
+import isLoggedIn from '../middlewares/isLoggedIn.js';
 const router = express.Router();
 
 //Every route have common url "product" in starting after given in this will apply 
 
-router.get("/",(req,resp)=>    // here route will be =  /product/
+router.get("/",isLoggedIn,(req,resp)=>    // here route will be =  /product/
 {
     resp.send("Product  Routes ");
 })
