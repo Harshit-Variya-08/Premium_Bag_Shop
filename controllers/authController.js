@@ -2,6 +2,7 @@ import userModel from '../models/userModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import generateToken from '../utils/generateToken.js';
+import productModel from '../models/productModel.js';
 
 
 export let registerUser = async (req,resp)=> // here route will be = /users/:id 
@@ -43,14 +44,19 @@ export let loginUser = async(req,resp)=>
         let user = await userModel.findOne({email});
         if(!user) return resp.send("Email Or password incorrect");
 
-        bcrypt.compare(password,user.password,(err,result)=>
+        bcrypt.compare(password,user.password,async (err,result)=>
         {
             if(result)
                 {
 
+                    req.user= user;
+                    console.log(req.user);
                     let token = generateToken(user);
                     resp.cookie("loginToken",token);
-                    resp.send("You can login");
+                    let products = await productModel.find();
+                    // resp.send("You can login");
+                    let success = req.flash("success");
+                    resp.render("shop",{products , login:true , success});
                 }
                 else
                 {
