@@ -30,7 +30,8 @@ export let registerUser = async (req,resp)=> // here route will be = /users/:id
             console.log(process.env.JWT_KEY);
            let token =  generateToken(createdUser);
             resp.cookie("registerToken",token);
-                resp.send("User created Successfullly");
+                // resp.send("User created Successfullly");
+                resp.redirect("/");
         })
     });
     
